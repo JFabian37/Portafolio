@@ -1,0 +1,150 @@
+/* =========================================
+   CONTENEDOR PRINCIPAL
+========================================= */
+.sobre-mi-section {
+  padding: 5rem 5%;
+  background-color: #0f172a;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+
+.sobre-mi-container {
+  max-width: 1000px;
+  width: 100%;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  color: #ffffff;
+}
+
+/* =========================================
+   GRID (Grilla para las 2 tarjetas)
+========================================= */
+.sobre-mi-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 2rem;
+}
+
+/* =========================================
+   TARJETAS (Cards)
+========================================= */
+.card {
+  background-color: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.icon-box {
+  background-color: rgba(129, 140, 248, 0.1);
+  color: #818cf8;
+  padding: 0.8rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-header h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.card-text {
+  color: #94a3b8;
+  line-height: 1.8;
+  font-size: 1rem;
+  text-align: justify;
+}
+
+/* =========================================
+   LÍNEA DE TIEMPO (Educación)
+========================================= */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* El punto en la línea de tiempo */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 5px;
+  width: 8px;
+  height: 8px;
+  background-color: #1e293b;
+  border: 2px solid #818cf8;
+  border-radius: 50%;
+}
+
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.timeline-header h4 {
+  font-size: 1.1rem;
+  color: #818cf8;
+  font-weight: 600;
+}
+
+.timeline-date {
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+/* =========================================
+   ETIQUETAS (Badges)
+========================================= */
+.badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.badge-outline {
+  border: 1px solid #818cf8;
+  color: #818cf8;
+  background-color: transparent;
+}
+
+/* =========================================
+   RESPONSIVIDAD
+========================================= */
+@media (max-width: 900px) {
+  .sobre-mi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+}
