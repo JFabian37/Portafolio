@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
+import Swal from 'sweetalert2';
 import './Contacto.css';
 
 const Contacto = () => {
@@ -9,6 +11,8 @@ const Contacto = () => {
     mensaje: ''
   });
 
+  const [cargando, setCargando] = useState(false);
+
   // Función para manejar los cambios en los inputs
   const manejarCambio = (e) => {
     const { name, value } = e.target;
@@ -18,12 +22,40 @@ const Contacto = () => {
     });
   };
 
-  // Función para simular el envío
-  const manejarEnvio = (e) => {
+  // Función para enviar el mensaje por EmailJS
+  const manejarEnvio = async (e) => {
     e.preventDefault();
-    alert(`¡Gracias por tu mensaje, ${formulario.nombre}! Te contactaré pronto.`);
-    // Limpiamos el formulario después de enviar
-    setFormulario({ nombre: '', email: '', mensaje: '' });
+    setCargando(true);
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          nombre: formulario.nombre,
+          email: formulario.email,
+          mensaje: formulario.mensaje
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+      Swal.fire({
+        title: '¡Mensaje enviado!',
+        text: `Gracias por tu mensaje, ${formulario.nombre}. Te contactaré pronto.`,
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+      });
+      // Limpiamos el formulario después de enviar
+      setFormulario({ nombre: '', email: '', mensaje: '' });
+    } catch (error) {
+      Swal.fire({
+        title: 'Error al enviar',
+        text: 'No se pudo enviar el mensaje. Inténtalo de nuevo más tarde.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
+      console.error('Error al enviar el correo:', error);
+    } finally {
+      setCargando(false);
+    }
   };
 
   return (
@@ -103,6 +135,7 @@ const Contacto = () => {
                   onChange={manejarCambio}
                   placeholder="Tu nombre"
                   required
+                  disabled={cargando}
                 />
               </div>
 
@@ -116,6 +149,7 @@ const Contacto = () => {
                   onChange={manejarCambio}
                   placeholder="tu@email.com"
                   required
+                  disabled={cargando}
                 />
               </div>
 
@@ -129,10 +163,13 @@ const Contacto = () => {
                   placeholder="Cuéntame sobre tu proyecto..."
                   rows="5"
                   required
+                  disabled={cargando}
                 ></textarea>
               </div>
 
-              <button type="submit" className="btn-submit">Enviar Mensaje</button>
+              <button type="submit" className="btn-submit" disabled={cargando}>
+                {cargando ? 'Enviando...' : 'Enviar Mensaje'}
+              </button>
             </form>
           </div>
 
