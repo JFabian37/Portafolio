@@ -1,146 +1,72 @@
-/* =========================================
-   SECCION TECH STACK
-========================================= */
-.habilidades-section {
-  padding: 5rem 5%;
-  background-color: var(--color-fondo);
-  display: flex;
-  justify-content: center;
+/* Fondo un paso mas claro para separar la seccion sin una linea mas */
+.seccion-alterna {
+  background-color: var(--acero-900);
+  border-block: 1px solid var(--linea);
 }
 
-.habilidades-container {
-  max-width: 1200px;
-  width: 100%;
-}
-
-.habilidades-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  align-items: start;
-}
-
-/* =========================================
-   TARJETA DE AREA
-========================================= */
-.area-card {
-  background-color: var(--color-superficie);
-  border: 1px solid var(--borde-sutil);
-  border-radius: var(--radio-md);
-  padding: 1.75rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-.area-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-  border-color: rgba(129, 140, 248, 0.25);
-}
-
-.area-header {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  padding-bottom: 1.1rem;
-  margin-bottom: 1.1rem;
-  border-bottom: 1px solid var(--borde-sutil);
-}
-
-.area-icono {
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radio-sm);
-  background-color: var(--velo-acento);
-  color: var(--color-acento-claro);
-  flex-shrink: 0;
-}
-
-.area-titulo {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--color-texto);
-}
-
-/* =========================================
-   LISTA DE HABILIDADES
-========================================= */
-.skill-list {
+.stack {
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
-  list-style: none;
 }
 
-.skill-fila {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 0.75rem;
-  margin-bottom: 0.2rem;
+.stack-fila {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 1.5rem 2.5rem;
+  padding-block: 1.9rem;
+  border-top: 1px solid var(--linea);
 }
 
-.skill-nombre {
-  color: var(--color-texto);
-  font-size: 0.98rem;
+.stack-fila:first-child { border-top: none; padding-top: 0; }
+.stack-fila:last-child { padding-bottom: 0; }
+
+.stack-area {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.45rem;
   font-weight: 600;
+  line-height: 1.15;
+  color: var(--texto);
 }
 
-.skill-desc {
-  color: var(--color-texto-suave);
-  font-size: 0.86rem;
-  line-height: 1.55;
+.stack-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+  gap: 1.25rem 2rem;
 }
 
-/* =========================================
-   NIVEL
-========================================= */
-.skill-nivel {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.4px;
-  text-transform: uppercase;
-  padding: 0.2rem 0.55rem;
-  border-radius: 20px;
-  border: 1px solid;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.nivel-avanzado {
-  color: #6ee7b7;
-  border-color: rgba(110, 231, 183, 0.35);
-  background-color: rgba(110, 231, 183, 0.08);
-}
-
-.nivel-intermedio {
-  color: var(--color-acento-claro);
-  border-color: rgba(129, 140, 248, 0.35);
-  background-color: var(--velo-acento);
-}
-
-.nivel-básico {
-  color: var(--color-texto-suave);
-  border-color: var(--borde-medio);
-}
-
-/* =========================================
-   ENLACE AL CERTIFICADO
-========================================= */
-.skill-cert {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  margin-top: 0.5rem;
-  font-size: 0.78rem;
+.stack-nombre {
+  display: block;
   font-weight: 600;
-  color: var(--color-acento-claro);
+  font-size: 1rem;
+  color: var(--texto);
+}
+
+.stack-detalle {
+  display: block;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--texto-tenue);
+  margin-top: 0.15rem;
+}
+
+/* Solo aparece donde hay un certificado real detras */
+.stack-cert {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ambar);
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s ease;
 }
 
-.skill-cert:hover {
-  border-bottom-color: currentColor;
+.stack-cert:hover { border-bottom-color: currentColor; }
+
+@media (max-width: 760px) {
+  .stack-fila {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding-block: 1.6rem;
+  }
 }

@@ -1,185 +1,223 @@
-/* =========================================
+/* =========================================================
    TIPOGRAFIA
-   Poppins se auto-hospeda con @fontsource, asi no depende
-   de una peticion a Google Fonts para pintar el texto.
-========================================= */
-/* Solo el subconjunto latino: los archivos generales traen tambien
-   devanagari y latin-ext, que el sitio nunca usa. */
-@import '@fontsource/poppins/latin-400.css';
-@import '@fontsource/poppins/latin-500.css';
-@import '@fontsource/poppins/latin-600.css';
-@import '@fontsource/poppins/latin-700.css';
+   Barlow nace de la senaletica vial e industrial: encaja con
+   un portafolio construido sobre almacenes, permisos y rotulos.
+   La version Condensed se reserva para titulares.
+   Solo el subconjunto latino, auto-hospedado.
+========================================================= */
+@import '@fontsource/barlow/latin-400.css';
+@import '@fontsource/barlow/latin-500.css';
+@import '@fontsource/barlow/latin-600.css';
+@import '@fontsource/barlow-condensed/latin-500.css';
+@import '@fontsource/barlow-condensed/latin-600.css';
+@import '@fontsource/barlow-condensed/latin-700.css';
 
-/* =========================================
-   TOKENS DE DISENO
-   Un solo lugar para los colores y medidas.
-   Si manana cambias el morado, lo cambias aqui y listo.
-========================================= */
+/* =========================================================
+   TOKENS
+========================================================= */
 :root {
-  /* Fondos */
-  --color-fondo: #0f172a;
-  --color-fondo-profundo: #0b1120;
-  --color-superficie: #1e293b;
+  /* Acero azulado: azul real, no un negro teñido */
+  --acero-950: #0a131d;
+  --acero-900: #0e1a26;
+  --acero-850: #132233;
+  --acero-800: #1a2c40;
+  --acero-700: #24394f;
+  --acero-600: #32506d;
 
-  /* Marca */
-  --color-acento: #6366f1;
-  --color-acento-claro: #818cf8;
-  --color-acento-oscuro: #4f46e5;
+  /* Ambar de senalizacion: el unico acento del sitio */
+  --ambar:      #ffb224;
+  --ambar-sueve: #ffc85c;
+  --ambar-velo: rgba(255, 178, 36, 0.12);
 
   /* Texto */
-  --color-texto: #ffffff;
-  --color-texto-suave: #94a3b8;
-  --color-texto-tenue: #64748b;
+  --texto:       #eaf1f8;
+  --texto-medio: #9fb3c8;
+  --texto-tenue: #6b8299;
 
-  /* Bordes y superficies translucidas */
-  --borde-sutil: rgba(255, 255, 255, 0.05);
-  --borde-medio: rgba(255, 255, 255, 0.1);
-  --velo-claro: rgba(255, 255, 255, 0.03);
-  --velo-acento: rgba(99, 102, 241, 0.1);
+  /* Lineas */
+  --linea:       #1e3145;
+  --linea-clara: #2b4259;
 
   /* Medidas */
-  --radio-sm: 8px;
-  --radio-md: 12px;
-  --radio-lg: 16px;
-  --ancho-navbar: 80px;
-  --sombra-card: 0 10px 30px rgba(0, 0, 0, 0.2);
+  --radio:    6px;
+  --radio-lg: 10px;
+  --nav:      64px;
+  --ancho:    1180px;
 
   color-scheme: dark;
 }
 
-/* =========================================
+/* =========================================================
    RESET
-========================================= */
+========================================================= */
 *,
 *::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+*::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-  background-color: var(--color-fondo);
-  color: var(--color-texto);
-  font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background-color: var(--acero-950);
+  color: var(--texto);
+  font-family: 'Barlow', system-ui, -apple-system, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
 }
 
-/* Los controles de formulario no heredan la fuente por defecto */
-input,
-textarea,
-button,
-select {
-  font: inherit;
-  color: inherit;
+input, textarea, button, select { font: inherit; color: inherit; }
+img, svg { display: block; max-width: 100%; }
+ul, ol { list-style: none; }
+a { color: inherit; }
+
+/* =========================================================
+   ESCALA TIPOGRAFICA
+   Condensed para titulares, Barlow normal para lectura.
+========================================================= */
+h1, h2, h3, .condensada {
+  font-family: 'Barlow Condensed', 'Barlow', system-ui, sans-serif;
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.01em;
 }
 
-img,
-svg {
-  display: block;
-  max-width: 100%;
+h1 { font-size: clamp(3.4rem, 10vw, 6.4rem); }
+h2 { font-size: clamp(2.2rem, 5.5vw, 3.4rem); }
+h3 { font-size: clamp(1.4rem, 3vw, 1.85rem); }
+
+p { text-wrap: pretty; }
+
+/* =========================================================
+   ESTRUCTURA
+   Todo alineado a la izquierda: un documento de operaciones
+   no se centra, y centrarlo todo es lo que hacia generico
+   el diseno anterior.
+========================================================= */
+.envoltura {
+  width: 100%;
+  max-width: var(--ancho);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
 }
 
-/* =========================================
-   ANCLAJES
-   El navbar es sticky, asi que al saltar a una seccion
-   hay que dejarle espacio o el titulo queda tapado.
-========================================= */
-[id] {
-  scroll-margin-top: calc(var(--ancho-navbar) + 1rem);
+.seccion { padding-block: clamp(4.5rem, 9vw, 7.5rem); }
+
+.seccion-cabecera {
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+  padding-bottom: 1.5rem;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid var(--linea);
 }
 
-/* =========================================
+/* La cuenta a la derecha del titulo: informa, no decora */
+.seccion-cuenta {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--texto-tenue);
+  margin-left: auto;
+}
+
+[id] { scroll-margin-top: calc(var(--nav) + 1.5rem); }
+
+/* =========================================================
    ACCESIBILIDAD
-========================================= */
-
-/* Enlace para saltar al contenido: invisible hasta que
-   alguien navega con Tab, util para lectores de pantalla. */
-.skip-link {
+========================================================= */
+.salto {
   position: absolute;
   left: -9999px;
   top: 0;
   z-index: 2000;
-  background-color: var(--color-acento);
-  color: var(--color-texto);
+  background-color: var(--ambar);
+  color: var(--acero-950);
   padding: 0.75rem 1.25rem;
-  border-radius: 0 0 var(--radio-sm) 0;
   font-weight: 600;
   text-decoration: none;
 }
+.salto:focus { left: 0; }
 
-.skip-link:focus {
-  left: 0;
-}
-
-/* Anillo de foco visible y consistente en todo el sitio */
 :focus-visible {
-  outline: 3px solid var(--color-acento-claro);
+  outline: 2px solid var(--ambar);
   outline-offset: 3px;
-  border-radius: 4px;
 }
 
-/* Texto solo para lectores de pantalla */
-.sr-only {
+.solo-lectores {
   position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
-  border: 0;
 }
 
-/* Respeta a quien pidio menos animacion en su sistema
-   operativo (mareos, migranas, vestibular). */
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 }
 
-/* =========================================
-   UTILIDADES COMPARTIDAS
-   Antes estaban duplicadas (y en conflicto) dentro de
-   Perfil.css, Proyectos.css, Contacto.css y Habilidades.css.
-========================================= */
-.text-cyan {
-  color: var(--color-acento);
+/* =========================================================
+   BOTONES
+========================================================= */
+.boton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: var(--radio);
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
-.text-center {
-  text-align: center;
+/* El ambar se reserva para la accion principal de la pagina */
+.boton-principal {
+  background-color: var(--ambar);
+  color: var(--acero-950);
+}
+.boton-principal:hover,
+.boton-principal:focus-visible { background-color: var(--ambar-sueve); }
+
+.boton-linea {
+  border-color: var(--linea-clara);
+  color: var(--texto);
+}
+.boton-linea:hover,
+.boton-linea:focus-visible {
+  border-color: var(--acero-600);
+  background-color: var(--acero-850);
 }
 
-.section-title {
-  font-size: clamp(1.75rem, 5vw, 2.5rem);
-  font-weight: 700;
-  margin-bottom: 2.5rem;
-  color: var(--color-texto);
-  line-height: 1.2;
+.boton-plano {
+  color: var(--texto-medio);
+  padding-inline: 0.5rem;
+}
+.boton-plano:hover,
+.boton-plano:focus-visible { color: var(--ambar); }
+
+/* =========================================================
+   ETIQUETAS DE TECNOLOGIA
+========================================================= */
+.tecnologias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
 }
 
-.section-subtitle {
-  color: var(--color-texto-suave);
-  font-size: 1.05rem;
-  line-height: 1.6;
-  margin-top: -1.75rem;
-  margin-bottom: 2.5rem;
-  max-width: 60ch;
+.tecnologia {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--texto-medio);
+  background-color: var(--acero-850);
+  border: 1px solid var(--linea);
+  padding: 0.22rem 0.65rem;
+  border-radius: 3px;
 }

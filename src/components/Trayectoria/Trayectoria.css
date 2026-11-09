@@ -1,0 +1,156 @@
+.trayectoria-malla {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(2.5rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+/* ---------- Perfil ---------- */
+/* Pegajoso por la misma razon que la captura del destacado:
+   la columna de al lado es mucho mas larga. */
+.trayectoria-perfil {
+  position: sticky;
+  top: calc(var(--nav) + 2rem);
+}
+
+.trayectoria-perfil p {
+  color: var(--texto-medio);
+  line-height: 1.72;
+  max-width: 50ch;
+}
+
+.trayectoria-perfil p + p { margin-top: 1.1rem; }
+
+/* ---------- Bloques ---------- */
+.bloque + .bloque { margin-top: 3rem; }
+
+.bloque-titulo {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--texto-tenue);
+  padding-bottom: 0.7rem;
+  margin-bottom: 1.6rem;
+  border-bottom: 1px solid var(--linea);
+}
+
+/* ---------- Empresa y sus cargos ---------- */
+.empresa-cabecera {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.empresa-cabecera h4 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--texto);
+}
+
+.empresa-lugar {
+  font-size: 0.9rem;
+  color: var(--texto-tenue);
+  margin-top: 0.1rem;
+}
+
+/* Linea de tiempo: los cargos sí son una secuencia */
+.cargos {
+  margin-top: 1.5rem;
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--linea-clara);
+}
+
+.cargo { position: relative; }
+.cargo + .cargo { margin-top: 1.9rem; }
+
+.cargo::before {
+  content: '';
+  position: absolute;
+  left: calc(-1.5rem - 5px);
+  top: 0.48em;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--acero-950);
+  border: 2px solid var(--linea-clara);
+}
+
+/* El cargo actual es el que importa: se marca */
+.cargo-actual::before {
+  background-color: var(--ambar);
+  border-color: var(--ambar);
+}
+
+.cargo h5 {
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: var(--texto);
+  line-height: 1.35;
+}
+
+.cargo-periodo {
+  flex-shrink: 0;
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: var(--texto-tenue);
+}
+
+.cargo-actual .cargo-periodo { color: var(--ambar); }
+
+.cargo .entrada-texto { margin-top: 0.6rem; font-size: 0.95rem; }
+
+/* ---------- Entradas ---------- */
+.entrada + .entrada { margin-top: 2rem; }
+
+.entrada-cabecera {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.entrada-cabecera h4 {
+  font-size: 1.12rem;
+  font-weight: 600;
+  color: var(--texto);
+  line-height: 1.35;
+}
+
+.entrada-periodo {
+  flex-shrink: 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ambar);
+}
+
+.entrada-donde {
+  font-size: 0.93rem;
+  color: var(--texto-tenue);
+  margin-top: 0.2rem;
+}
+
+/* Separador vertical en vez de un punto medio entre textos */
+.entrada-contexto {
+  margin-left: 0.6rem;
+  padding-left: 0.6rem;
+  border-left: 1px solid var(--linea-clara);
+}
+
+.entrada-texto {
+  margin-top: 0.85rem;
+  color: var(--texto-medio);
+  line-height: 1.68;
+  font-size: 0.97rem;
+}
+
+.entrada .tecnologias { margin-top: 1rem; }
+
+.entrada-breve .entrada-donde { margin-top: 0.15rem; }
+
+@media (max-width: 900px) {
+  .trayectoria-malla { grid-template-columns: 1fr; }
+  .trayectoria-perfil { position: static; }
+}

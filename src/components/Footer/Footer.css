@@ -1,14 +1,10 @@
-.footer {
-  background-color: var(--color-fondo-profundo);
-  border-top: 1px solid var(--borde-sutil);
-  padding: 2.5rem 5%;
-  display: flex;
-  justify-content: center;
+.pie {
+  background-color: var(--acero-900);
+  border-top: 1px solid var(--linea);
+  padding-block: 2.5rem;
 }
 
-.footer-contenido {
-  max-width: 1000px;
-  width: 100%;
+.pie-interior {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -16,45 +12,35 @@
   gap: 1.25rem;
 }
 
-.footer-nombre {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--color-texto);
+.pie-nombre {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
-.footer-enlaces {
+.pie-enlaces {
   display: flex;
+  flex-wrap: wrap;
   gap: 1.5rem;
 }
 
-.footer-enlaces a {
-  color: var(--color-texto-suave);
+.pie-enlaces a {
+  font-size: 0.92rem;
+  color: var(--texto-tenue);
   text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
 }
 
-.footer-enlaces a:hover {
-  color: var(--color-acento-claro);
-}
+.pie-enlaces a:hover { color: var(--ambar); }
 
-.footer-legal {
+.pie-legal {
   width: 100%;
   padding-top: 1.25rem;
-  border-top: 1px solid var(--borde-sutil);
-  font-size: 0.8rem;
-  color: var(--color-texto-tenue);
+  border-top: 1px solid var(--linea);
+  font-size: 0.82rem;
+  color: var(--texto-tenue);
 }
 
-@media (max-width: 640px) {
-  .footer-contenido {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  .footer-legal {
-    text-align: left;
-  }
+@media (max-width: 620px) {
+  .pie-interior { flex-direction: column; align-items: flex-start; gap: 1rem; }
 }

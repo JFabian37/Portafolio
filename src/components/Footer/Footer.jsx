@@ -5,20 +5,19 @@ import { perfil } from '../../data/perfil';
 const anio = new Date().getFullYear();
 
 const Footer = () => (
-  <footer className="footer">
-    <div className="footer-contenido">
-      <p className="footer-nombre">
-        <span className="text-cyan">{perfil.nombre}</span> {perfil.apellidos}
-      </p>
+  <footer className="pie">
+    <div className="envoltura pie-interior">
+      <p className="pie-nombre">{perfil.nombre} {perfil.apellidos}</p>
 
-      <nav className="footer-enlaces" aria-label="Enlaces del pie de página">
+      <nav className="pie-enlaces" aria-label="Enlaces del pie de página">
         <a href={perfil.github} target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href={perfil.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href={`mailto:${perfil.email}`}>Email</a>
+        <a href={`mailto:${perfil.email}`}>Correo</a>
+        <a href={perfil.cv} download>CV</a>
       </nav>
 
-      <p className="footer-legal">
-        © {anio} · Hecho con React y Vite en {perfil.ubicacion}
+      <p className="pie-legal">
+        {anio} — Hecho con React y Vite en {perfil.ubicacion}
       </p>
     </div>
   </footer>

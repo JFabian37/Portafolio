@@ -1,11 +1,11 @@
-// Datos personales y de formación.
-// Están aquí y no dentro de los componentes para que actualizar el
-// portafolio sea editar un dato, no tocar el JSX.
+// Datos personales, experiencia y formación.
+// Todo el contenido del sitio vive en src/data/: actualizar el
+// portafolio es editar un dato, no tocar el JSX.
 
 export const perfil = {
   nombre: 'Josue',
   apellidos: 'Del Río Montoya',
-  rol: 'Estudiante de Ingeniería de Software con IA · SENATI',
+  titular: 'Desarrollador fullstack',
   disponible: true,
   ubicacion: 'Lima, Perú',
   email: 'delriomontoyajosue6@gmail.com',
@@ -13,68 +13,72 @@ export const perfil = {
   github: 'https://github.com/JFabian37',
   cv: '/CV-Josue-Del-Rio.pdf',
 
-  descripcion:
-    'Construyo aplicaciones web de principio a fin: interfaces en React y ' +
-    'APIs en Node.js y Laravel sobre bases de datos relacionales. ' +
-    'Actualmente curso el 4° ciclo de Ingeniería de Software con ' +
-    'Inteligencia Artificial en SENATI, bajo el programa de Aprendizaje Dual.',
+  // Lo que ve alguien en los primeros cinco segundos.
+  posicionamiento:
+    'Construyo software que reemplaza procesos en papel. Mi sistema de ' +
+    'permisos de trabajo lo usa hoy el área de seguridad en las siete sedes ' +
+    'de AGUNSA.',
 
   resumen:
-    'Estudiante de Ingeniería de Software con Inteligencia Artificial en SENATI ' +
-    '(Aprendizaje Dual, VI semestres). Trabajo con React, Node.js, Express, ' +
-    'Laravel, MySQL y PostgreSQL, y uso Power BI para análisis de datos.\n\n' +
-    'Mis proyectos van desde un panel de inventario con kardex y control de acceso ' +
-    'por rol, hasta un portal interno de permisos de trabajo que hoy usa el área ' +
-    'de QHSE en las sedes de la empresa donde trabajo. Me interesa que el software ' +
-    'resuelva un proceso concreto, no solo que compile.',
+    'Estudiante de Ingeniería de Software con Inteligencia Artificial en ' +
+    'SENATI, en el programa de Aprendizaje Dual. Trabajo con React y ' +
+    'TypeScript en el frontend, Node.js y Laravel en el backend, y bases de ' +
+    'datos relacionales.\n\n' +
+    'Entré a AGUNSA en el almacén. Ahí vi cómo los permisos de trabajo se ' +
+    'llenaban a mano y se perdían, así que construí el sistema que los ' +
+    'reemplazó. Hoy soy Asistente QHSE y programo las aplicaciones del área.\n\n' +
+    'Me interesa el software que resuelve un proceso concreto, no el que ' +
+    'solo compila.',
 };
+
+// Una sola empresa, dos cargos: el ascenso del almacén al área QHSE
+// es parte del argumento, no un dato administrativo.
+export const experiencia = [
+  {
+    id: 'agunsa',
+    empresa: 'AGUNSA Perú',
+    lugar: 'Lima, Perú',
+    periodo: 'Julio 2025 — Actualidad',
+    cargos: [
+      {
+        id: 'qhse',
+        puesto: 'Asistente QHSE',
+        periodo: 'Julio 2026 — Actualidad',
+        actual: true,
+        descripcion:
+          'Automatizo procesos con Power Automate y programo aplicaciones web ' +
+          'a medida para digitalizar los registros del área. El Portal QHSE que ' +
+          'construí lo usa hoy el personal de seguridad en las siete sedes.',
+        tecnologias: ['Power Pages', 'Dataverse', 'Power Automate', 'JavaScript', 'SQL'],
+      },
+      {
+        id: 'almacen',
+        puesto: 'Auxiliar de Almacén y Distribución',
+        periodo: 'Julio 2025 — Junio 2026',
+        actual: false,
+        descripcion:
+          'Recepción, validación y despacho de mercadería con trazabilidad ' +
+          'completa. Aquí vi de cerca el problema que después resolvería con ' +
+          'software: los permisos de trabajo se llenaban a mano y se perdían.',
+        tecnologias: [],
+      },
+    ],
+  },
+];
 
 export const educacion = [
   {
     id: 'senati-ingenieria',
     titulo: 'Ingeniería de Software con Inteligencia Artificial',
-    institucion: 'SENATI · Escuela de Tecnologías de la Información',
-    detalle: 'Aprendizaje Dual · VI semestres · 4° ciclo',
-    estado: 'En curso',
-  },
-  {
-    id: 'senati-seminario',
-    titulo: 'Seminario de Complementación Práctica II',
-    institucion: 'SENATI · Escuela de Tecnologías de la Información',
-    detalle: null,
-    estado: 'En curso',
+    institucion: 'SENATI',
+    detalle: 'Aprendizaje Dual · 4° ciclo',
+    periodo: 'En curso',
   },
   {
     id: 'colegio',
     titulo: 'Educación secundaria',
     institucion: 'G.U.E. José Granda',
-    detalle: '2018 – 2022',
-    estado: 'Concluido',
-  },
-];
-
-export const experiencia = [
-  {
-    id: 'agunsa',
-    puesto: 'Auxiliar de Almacén y Distribución',
-    empresa: 'AGUNSA / IMUDESA — Almacenes de LATAM',
-    periodo: 'Julio 2025 – Actualidad',
-    detalle:
-      'Recepción, validación y despacho de mercadería. En paralelo desarrollo ' +
-      'el Portal QHSE que usa el área de seguridad en las sedes.',
-  },
-  {
-    id: 'nomicar',
-    puesto: 'Operario de almacén – maquila',
-    empresa: 'Nomi Car Service S.A.C.',
-    periodo: 'Marzo – Junio 2025',
     detalle: null,
-  },
-  {
-    id: 'pronabec',
-    puesto: 'Operador Informático · Examen Beca 18',
-    empresa: 'PRONABEC',
-    periodo: 'Diciembre 2024',
-    detalle: null,
+    periodo: '2018 — 2022',
   },
 ];
