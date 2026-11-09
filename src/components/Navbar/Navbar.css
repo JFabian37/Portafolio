@@ -1,73 +1,120 @@
 /* =========================================
-   ESTILOS GENERALES DEL NAVBAR
+   NAVBAR
 ========================================= */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 5%;
-  background-color: #0f172a;
-  color: #ffffff;
+  gap: 1rem;
+  padding: 1.25rem 5%;
+  min-height: var(--ancho-navbar);
+  background-color: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  color: var(--color-texto);
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid var(--borde-sutil);
 }
 
 /* =========================================
-   ESTILOS DEL LOGO
+   LOGO
 ========================================= */
 .navbar-logo {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  cursor: pointer;
-  letter-spacing: 1px;
-}
-
-.text-cyan {
-  color: #6366f1;
+  letter-spacing: 0.5px;
+  color: var(--color-texto);
+  text-decoration: none;
+  white-space: nowrap;
 }
 
 /* =========================================
-   ESTILOS DE LOS ENLACES (DESKTOP)
+   ENLACES
 ========================================= */
 .navbar-links {
   display: flex;
-  gap: 2.5rem;
+  gap: 2rem;
+  list-style: none;
 }
 
 .navbar-links a {
-  color: #94a3b8;
+  position: relative;
+  display: inline-block;
+  padding: 0.25rem 0;
+  color: var(--color-texto-suave);
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
 .navbar-links a:hover {
-  color: #ffffff;
+  color: var(--color-texto);
+}
+
+/* Subrayado que sigue a la seccion visible */
+.navbar-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-acento);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.navbar-links a[aria-current='true'] {
+  color: var(--color-texto);
+}
+
+.navbar-links a[aria-current='true']::after {
+  transform: scaleX(1);
 }
 
 /* =========================================
-   BOTÓN HAMBURGUESA (Oculto en PC)
+   BOTON HAMBURGUESA
 ========================================= */
 .navbar-toggle {
   display: none;
   flex-direction: column;
-  cursor: pointer;
+  justify-content: center;
   gap: 6px;
+  width: 44px;   /* 44 px es el minimo comodo para tocar con el dedo */
+  height: 44px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .bar {
   width: 25px;
   height: 3px;
-  background-color: #ffffff;
+  margin: 0 auto;
+  background-color: var(--color-texto);
   border-radius: 2px;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+/* Las tres barras se convierten en una X al abrir */
+.navbar-toggle.is-open .bar:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.navbar-toggle.is-open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar-toggle.is-open .bar:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
 }
 
 /* =========================================
-   MEDIA QUERY: VERSIÓN MÓVIL Y TABLET
+   MOVIL Y TABLET
 ========================================= */
 @media (max-width: 768px) {
   .navbar-toggle {
@@ -81,15 +128,24 @@
     top: 100%;
     left: 0;
     width: 100%;
-    background-color: #0f172a;
-    padding: 2rem 0;
+    background-color: var(--color-fondo);
+    padding: 1.5rem 0;
     text-align: center;
-    gap: 2rem;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    gap: 1.5rem;
+    border-bottom: 1px solid var(--borde-medio);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
   }
 
-  /* Cuando el estado isOpen es true, se añade la clase "open" */
   .navbar-links.open {
     display: flex;
+  }
+
+  /* En el menu desplegado el subrayado quedaria raro */
+  .navbar-links a::after {
+    display: none;
+  }
+
+  .navbar-links a[aria-current='true'] {
+    color: var(--color-acento-claro);
   }
 }

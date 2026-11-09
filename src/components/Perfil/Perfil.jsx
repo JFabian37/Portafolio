@@ -1,78 +1,92 @@
 import './Perfil.css';
+import { perfil, educacion, experiencia } from '../../data/perfil';
 
-const Perfil = () => {
-  return (
-    <section id="sobre-mi" className="sobre-mi-section">
-      <div className="sobre-mi-container">
-        <h2 className="section-title">Sobre mí</h2>
+const IconoUsuario = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+    fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+    strokeLinejoin="round" aria-hidden="true">
+    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+    <circle cx="12" cy="7" r="4" />
+  </svg>
+);
 
-        <div className="sobre-mi-grid">
+const IconoEducacion = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+    fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+    strokeLinejoin="round" aria-hidden="true">
+    <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+    <path d="M6 12v5c3 3 9 3 12 0v-5" />
+  </svg>
+);
 
-          {/* TARJETA 1: PERFIL PROFESIONAL */}
-          <div className="card">
-            <div className="card-header">
-              {/* Ícono de Usuario (SVG) */}
-              <div className="icon-box">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                  height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                  strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-              </div>
-              <h3>Perfil profesional</h3>
-            </div>
+const IconoTrabajo = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+    fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+    strokeLinejoin="round" aria-hidden="true">
+    <rect x="2" y="7" width="20" height="14" rx="2" />
+    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+  </svg>
+);
 
-            <p className="card-text">
-              Estudiante del Seminario Fullstack Developer Software en SENATI, con interés en el
-              desarrollo de aplicaciones web y en la construcción de interfaces con componentes.
-              <br /><br />
-              Actualmente aprendo React, Laravel, bases de datos relacionales y el uso de herramientas
-              de desarrollo como Git y GitHub. Mi objetivo es crear sistemas funcionales que
-              resuelvan necesidades reales.
-            </p>
-          </div>
+const Perfil = () => (
+  <section id="sobre-mi" className="sobre-mi-section">
+    <div className="sobre-mi-container">
+      <h2 className="section-title">Sobre mí</h2>
 
-          {/* TARJETA 2: EDUCACIÓN */}
-          <div className="card">
-            <div className="card-header">
-              {/* Ícono de Educación / Sombrero (SVG) */}
-              <div className="icon-box">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                  height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                  strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-                  <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
-                </svg>
-              </div>
-              <h3>Educación</h3>
-            </div>
+      <div className="sobre-mi-grid">
+        <article className="card">
+          <header className="card-header">
+            <span className="icon-box"><IconoUsuario /></span>
+            <h3>Perfil profesional</h3>
+          </header>
 
-            <div className="timeline">
-              {/* Ítem de Educación 1 */}
-              <div className="timeline-item">
+          {perfil.resumen.split('\n\n').map((parrafo) => (
+            <p key={parrafo.slice(0, 32)} className="card-text">{parrafo}</p>
+          ))}
+        </article>
+
+        <article className="card">
+          <header className="card-header">
+            <span className="icon-box"><IconoEducacion /></span>
+            <h3>Educación</h3>
+          </header>
+
+          <ol className="timeline">
+            {educacion.map((item) => (
+              <li key={item.id} className="timeline-item">
                 <div className="timeline-header">
-                  <h4>Fullstack Developer Software - Seminario</h4>
-                  <span className="badge badge-outline">En curso</span>
+                  <h4>{item.titulo}</h4>
+                  <span className="badge badge-outline">{item.estado}</span>
                 </div>
-                <span className="timeline-date">SENATI</span>
-              </div>
+                <span className="timeline-date">{item.institucion}</span>
+                {item.detalle && <span className="timeline-meta">{item.detalle}</span>}
+              </li>
+            ))}
+          </ol>
+        </article>
 
-              {/* Ítem de Educación 2 */}
-              <div className="timeline-item">
+        <article className="card card-ancha">
+          <header className="card-header">
+            <span className="icon-box"><IconoTrabajo /></span>
+            <h3>Experiencia</h3>
+          </header>
+
+          <ol className="timeline timeline-horizontal">
+            {experiencia.map((item) => (
+              <li key={item.id} className="timeline-item">
                 <div className="timeline-header">
-                  <h4>Seminario de Complementación Práctica II</h4>
-                  <span className="badge badge-outline">En curso</span>
+                  <h4>{item.puesto}</h4>
+                  <span className="badge badge-outline">{item.periodo}</span>
                 </div>
-                <span className="timeline-date">SENATI - Escuela de Tecnologías de la Información</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
+                <span className="timeline-date">{item.empresa}</span>
+                {item.detalle && <p className="timeline-detalle">{item.detalle}</p>}
+              </li>
+            ))}
+          </ol>
+        </article>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default Perfil;

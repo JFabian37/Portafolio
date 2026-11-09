@@ -1,100 +1,115 @@
 import './Proyectos.css';
-import powerBiImg from '../../assets/powerbi.png';
-import foriaImg from '../../assets/foria.svg';
+import { proyectos } from '../../data/proyectos';
 
-const Proyectos = () => {
-  // Arreglo de proyectos (Simulando una base de datos o API)
-  const proyectosData = [
-    {
-      id: 1,
-      imagen: foriaImg,
-      titulo: "Desarrollo de Aplicación Web y Carrito de Compras - FORIA SAC",
-      descripcion: "Aplicación web de venta de calzados para varones, mujeres, niños y niñas.",
-      tecnologias: ["HTML5", "CSS3", "JavaScript", "React", "Laravel", "PostGreSQL"],
-      linkDemo: "https://foria.com.pe",
-      linkCodigo: "#"
-    },
-    {
-      id: 2,
-      imagen: "https://fravia.com.pe/imagenes/HOMBRE-cAT.jpg",
-      titulo: "Desarrollo de Aplicación Web y Carrito de Compras - FRAVIA SAC",
-      descripcion: "Aplicación web de venta de ropa para varones, mujeres, niños y niñas.",
-      tecnologias: ["HTML5", "CSS3", "JavaScript", "React", "Laravel", "PostGreSQL"],
-      linkDemo: "https://fravia.com.pe",
-      linkCodigo: "#"
-    },
-    {
-      id: 3,
-      imagen: "https://intikisa.pe/wp-content/uploads/2024/08/Productos_en_polvo1.png.webp",
-      titulo: "Aplicación Web de venta de productos naturales",
-      descripcion: "Aplicación web para la venta de productos naturales online.",
-      tecnologias: ["React", "Laravel", "PostGreSQL"],
-      linkDemo: "https://intikisa.pe",
-      linkCodigo: "#"
-    },
-    {
-      id: 4,
-      imagen: powerBiImg,
-      titulo: "Dashboard Interactivo en Power BI",
-      descripcion: "Construcción de un Panel BI Interactivo.",
-      tecnologias: ["Power BI", "DAX", "Power Query", "Modelado de datos", "Power BI Service", "SharePoint"],
-      linkDemo: "#",
-      linkCodigo: "#"
-    }
-  ];
+const IconoDemo = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+    <polyline points="15 3 21 3 21 9" />
+    <line x1="10" y1="14" x2="21" y2="3" />
+  </svg>
+);
 
-  return (
-    <section id="proyectos" className="proyectos-section">
-      <div className="proyectos-container">
-        <h2 className="section-title text-center">Proyectos Destacados</h2>
+const IconoCodigo = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+  </svg>
+);
 
-        <div className="proyectos-grid">
-          {proyectosData.map((proyecto) => (
-            <article key={proyecto.id} className="proyecto-card">
+const IconoCandado = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect x="3" y="11" width="18" height="11" rx="2" />
+    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+  </svg>
+);
 
-              {/* 1. Imagen del Proyecto */}
-              <div className="proyecto-imagen">
-                <img src={proyecto.imagen} alt={`Captura de ${proyecto.titulo}`} />
-              </div>
+const Proyectos = () => (
+  <section id="proyectos" className="proyectos-section">
+    <div className="proyectos-container">
+      <h2 className="section-title text-center">Proyectos</h2>
 
-              {/* 2. Contenido de la Tarjeta */}
-              <div className="proyecto-contenido">
+      <div className="proyectos-grid">
+        {proyectos.map((proyecto, indice) => (
+          <article key={proyecto.id} className="proyecto-card">
+            <div className="proyecto-imagen">
+              {proyecto.imagen ? (
+                <img
+                  src={proyecto.imagen}
+                  alt={proyecto.alt}
+                  className={proyecto.encuadre === 'top' ? 'encuadre-arriba' : ''}
+                  width="1200"
+                  height="560"
+                  /* Las dos primeras tarjetas suelen verse al entrar;
+                     el resto se carga cuando el usuario llega. */
+                  loading={indice < 2 ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
+              ) : (
+                <div className="proyecto-placeholder" aria-hidden="true">
+                  <span>{proyecto.titulo}</span>
+                </div>
+              )}
+
+              {proyecto.estado && (
+                <span className="proyecto-estado">{proyecto.estado}</span>
+              )}
+            </div>
+
+            <div className="proyecto-contenido">
+              <header>
                 <h3 className="proyecto-titulo">{proyecto.titulo}</h3>
-                <p className="proyecto-desc">{proyecto.descripcion}</p>
+                {proyecto.subtitulo && (
+                  <p className="proyecto-subtitulo">{proyecto.subtitulo}</p>
+                )}
+              </header>
 
-                {/* 3. Etiquetas de Tecnologías */}
-                <div className="proyecto-tags">
-                  {proyecto.tecnologias.map((tech, index) => (
-                    <span key={index} className="tech-tag">{tech}</span>
+              {proyecto.rol && (
+                <p className="proyecto-rol">
+                  <span className="sr-only">Mi rol: </span>
+                  {proyecto.rol}
+                </p>
+              )}
+
+              <p className="proyecto-desc">{proyecto.descripcion}</p>
+
+              <ul className="proyecto-tags">
+                {proyecto.tecnologias.map((tech) => (
+                  <li key={tech} className="tech-tag">{tech}</li>
+                ))}
+              </ul>
+
+              {proyecto.enlaces.length > 0 ? (
+                <div className="proyecto-links">
+                  {proyecto.enlaces.map((enlace) => (
+                    <a
+                      key={enlace.url}
+                      href={enlace.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`btn-proyecto ${enlace.tipo === 'demo' ? 'btn-demo' : 'btn-codigo'}`}
+                    >
+                      {enlace.tipo === 'demo' ? <IconoDemo /> : <IconoCodigo />}
+                      {enlace.texto}
+                      <span className="sr-only"> de {proyecto.titulo} (se abre en una pestaña nueva)</span>
+                    </a>
                   ))}
                 </div>
-
-                {/* 4. Botones de Acción */}
-                <div className="proyecto-links">
-                  <a href={proyecto.linkDemo} target="_blank" rel="noopener noreferrer" className="btn-proyecto btn-demo">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                      <polyline points="15 3 21 3 21 9"></polyline>
-                      <line x1="10" y1="14" x2="21" y2="3"></line>
-                    </svg>
-                    Demo en Vivo
-                  </a>
-
-                  <a href={proyecto.linkCodigo} target="_blank" rel="noopener noreferrer" className="btn-proyecto btn-codigo">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                    </svg>
-                    Ver Código
-                  </a>
-                </div>
-              </div>
-
-            </article>
-          ))}
-        </div>
+              ) : (
+                proyecto.notaEnlaces && (
+                  <p className="proyecto-nota">
+                    <IconoCandado />
+                    {proyecto.notaEnlaces}
+                  </p>
+                )
+              )}
+            </div>
+          </article>
+        ))}
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default Proyectos;

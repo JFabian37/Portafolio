@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img"
+     aria-label="Portada de Terruño &amp; Co.: botella en 3D sobre hileras de viñedo">
+  <defs>
+    <linearGradient id="vino-fondo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#241824"/>
+      <stop offset="55%" stop-color="#16121f"/>
+      <stop offset="100%" stop-color="#0b1120"/>
+    </linearGradient>
+    <radialGradient id="vino-halo" cx="0.5" cy="0.40" r="0.56">
+      <stop offset="0%" stop-color="#b4567a" stop-opacity="0.34"/>
+      <stop offset="100%" stop-color="#b4567a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="vino-vidrio" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2f1424"/>
+      <stop offset="34%" stop-color="#7c1e3c"/>
+      <stop offset="58%" stop-color="#4a1228"/>
+      <stop offset="100%" stop-color="#1d0b16"/>
+    </linearGradient>
+    <linearGradient id="vino-etiqueta" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f5ead6"/>
+      <stop offset="100%" stop-color="#dcc9a8"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="560" fill="url(#vino-fondo)"/>
+  <rect width="1200" height="560" fill="url(#vino-halo)"/>
+
+  <!-- Hileras de viñedo en perspectiva -->
+  <g stroke="#e4b7c6" stroke-opacity="0.11" stroke-width="2" fill="none">
+    <path d="M-40 560 C 180 448 420 404 600 396"/>
+    <path d="M140 560 C 320 468 480 412 600 396"/>
+    <path d="M320 560 C 420 480 530 420 600 396"/>
+    <path d="M1240 560 C 1020 448 780 404 600 396"/>
+    <path d="M1060 560 C 880 468 720 412 600 396"/>
+    <path d="M880 560 C 780 480 670 420 600 396"/>
+  </g>
+  <g stroke="#e4b7c6" stroke-opacity="0.07" stroke-width="2" fill="none">
+    <path d="M210 512h780"/>
+    <path d="M320 462h560"/>
+    <path d="M404 424h392"/>
+  </g>
+
+  <!-- Botella -->
+  <g transform="translate(600 286) scale(0.88)">
+    <ellipse cx="0" cy="214" rx="116" ry="17" fill="#000000" fill-opacity="0.45"/>
+
+    <path d="M-23 -222 h46 v85 c0 23 39 50 39 105 v216 c0 21 -16 34 -37 34 h-50
+             c-21 0 -37 -13 -37 -34 v-216 c0 -55 39 -82 39 -105 z"
+          fill="url(#vino-vidrio)" stroke="#000000" stroke-opacity="0.45" stroke-width="2"/>
+
+    <!-- Reflejo especular: el detalle que da la sensacion de 3D -->
+    <path d="M-14 -210 v82 c0 27 -27 51 -27 103 v200"
+          fill="none" stroke="#ffffff" stroke-opacity="0.26" stroke-width="8" stroke-linecap="round"/>
+    <path d="M39 -107 c13 21 16 39 16 75 v176"
+          fill="none" stroke="#ffffff" stroke-opacity="0.09" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- Capsula -->
+    <path d="M-25 -228 h50 v63 h-50 z" fill="#5c1730"/>
+    <rect x="-26" y="-189" width="52" height="11" fill="#c9a44c" fill-opacity="0.85"/>
+
+    <!-- Etiqueta -->
+    <rect x="-53" y="16" width="106" height="133" rx="5" fill="url(#vino-etiqueta)"/>
+    <g fill="#5c1730">
+      <rect x="-35" y="39" width="70" height="6" rx="3"/>
+      <rect x="-26" y="55" width="52" height="4" rx="2" fill-opacity="0.6"/>
+      <circle cx="0" cy="89" r="15" fill="none" stroke="#5c1730" stroke-width="2.5"/>
+      <path d="M-7 89 l5 6 10 -12" fill="none" stroke="#5c1730"
+            stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="-30" y="119" width="60" height="4" rx="2" fill-opacity="0.6"/>
+      <rect x="-19" y="130" width="38" height="4" rx="2" fill-opacity="0.45"/>
+    </g>
+  </g>
+
+  <!-- Copas a los lados -->
+  <g stroke="#e4b7c6" stroke-opacity="0.26" stroke-width="3" fill="none" stroke-linecap="round">
+    <g transform="translate(318 318)">
+      <path d="M-30 0 c0 34 13 53 30 57 17 -4 30 -23 30 -57 z" fill="#7c1e3c" fill-opacity="0.35"/>
+      <path d="M-30 0 h60"/>
+      <path d="M0 57 v48 M-23 105 h46"/>
+    </g>
+    <g transform="translate(882 318)">
+      <path d="M-30 0 c0 34 13 53 30 57 17 -4 30 -23 30 -57 z" fill="#7c1e3c" fill-opacity="0.35"/>
+      <path d="M-30 0 h60"/>
+      <path d="M0 57 v48 M-23 105 h46"/>
+    </g>
+  </g>
+</svg>

@@ -1,28 +1,21 @@
 /* =========================================
-   CONTENEDOR PRINCIPAL
+   SECCION SOBRE MI
 ========================================= */
 .sobre-mi-section {
   padding: 5rem 5%;
-  background-color: #0f172a;
-  color: #ffffff;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
   display: flex;
   justify-content: center;
 }
 
 .sobre-mi-container {
-  max-width: 1000px;
+  max-width: 1100px;
   width: 100%;
 }
 
-.section-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 2.5rem;
-  color: #ffffff;
-}
-
 /* =========================================
-   GRID (Grilla para las 2 tarjetas)
+   GRILLA
 ========================================= */
 .sobre-mi-grid {
   display: grid;
@@ -30,15 +23,19 @@
   gap: 2rem;
 }
 
+.card-ancha {
+  grid-column: 1 / -1;
+}
+
 /* =========================================
-   TARJETAS (Cards)
+   TARJETAS
 ========================================= */
 .card {
-  background-color: #1e293b;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
+  background-color: var(--color-superficie);
+  border: 1px solid var(--borde-sutil);
+  border-radius: var(--radio-md);
   padding: 2.5rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--sombra-card);
 }
 
 .card-header {
@@ -49,44 +46,56 @@
 }
 
 .icon-box {
-  background-color: rgba(129, 140, 248, 0.1);
-  color: #818cf8;
+  background-color: var(--velo-acento);
+  color: var(--color-acento-claro);
   padding: 0.8rem;
-  border-radius: 8px;
+  border-radius: var(--radio-sm);
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .card-header h3 {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--color-texto);
 }
 
 .card-text {
-  color: #94a3b8;
+  color: var(--color-texto-suave);
   line-height: 1.8;
   font-size: 1rem;
-  text-align: justify;
+  text-wrap: pretty;
+}
+
+.card-text + .card-text {
+  margin-top: 1rem;
 }
 
 /* =========================================
-   LÍNEA DE TIEMPO (Educación)
+   LINEA DE TIEMPO
 ========================================= */
 .timeline {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.75rem;
+  list-style: none;
+}
+
+/* La experiencia tiene mas items y cabe en columnas */
+.timeline-horizontal {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.75rem 2rem;
 }
 
 .timeline-item {
   position: relative;
   padding-left: 1.5rem;
-  border-left: 2px solid rgba(255, 255, 255, 0.1);
+  border-left: 2px solid var(--borde-medio);
 }
 
-/* El punto en la línea de tiempo */
 .timeline-item::before {
   content: '';
   position: absolute;
@@ -94,8 +103,8 @@
   top: 5px;
   width: 8px;
   height: 8px;
-  background-color: #1e293b;
-  border: 2px solid #818cf8;
+  background-color: var(--color-superficie);
+  border: 2px solid var(--color-acento-claro);
   border-radius: 50%;
 }
 
@@ -103,36 +112,53 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
 .timeline-header h4 {
-  font-size: 1.1rem;
-  color: #818cf8;
+  font-size: 1.05rem;
+  color: var(--color-acento-claro);
   font-weight: 600;
+  line-height: 1.4;
 }
 
 .timeline-date {
+  display: block;
   font-size: 0.9rem;
-  color: #94a3b8;
+  color: var(--color-texto-suave);
+}
+
+.timeline-meta {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.82rem;
+  color: var(--color-texto-tenue);
+}
+
+.timeline-detalle {
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-texto-suave);
 }
 
 /* =========================================
-   ETIQUETAS (Badges)
+   ETIQUETAS
 ========================================= */
 .badge {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  padding: 0.2rem 0.6rem;
+  padding: 0.25rem 0.6rem;
   border-radius: 4px;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
+  white-space: nowrap;
 }
 
 .badge-outline {
-  border: 1px solid #818cf8;
-  color: #818cf8;
+  border: 1px solid var(--color-acento-claro);
+  color: var(--color-acento-claro);
   background-color: transparent;
 }
 
@@ -145,6 +171,6 @@
   }
 
   .card {
-    padding: 1.5rem;
+    padding: 1.75rem;
   }
 }

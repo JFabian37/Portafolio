@@ -3,8 +3,8 @@
 ========================================= */
 .contacto-section {
   padding: 6rem 5%;
-  background-color: #0b1120;
-  color: #ffffff;
+  background-color: var(--color-fondo-profundo);
+  color: var(--color-texto);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,12 +15,12 @@
   width: 100%;
 }
 
-.section-title {
-  font-size: 2.5rem;
-  font-weight: 700;
+/* Variante local: el titulo base vive en index.css, aqui solo
+   se ajusta lo que cambia en esta seccion. */
+.contacto-section .section-title {
   margin-bottom: 4rem;
   text-align: center;
-  color: #6366f1;
+  color: var(--color-acento-claro);
 }
 
 /* =========================================
@@ -43,7 +43,7 @@
 }
 
 .info-desc {
-  color: #94a3b8;
+  color: var(--color-texto-suave);
   line-height: 1.6;
   margin-bottom: 2.5rem;
 }
@@ -51,7 +51,8 @@
 .info-items {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
+  list-style: none;
 }
 
 .info-item {
@@ -61,12 +62,12 @@
 }
 
 .info-icon {
-  background-color: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #6366f1;
+  background-color: var(--velo-claro);
+  border: 1px solid var(--borde-medio);
+  color: var(--color-acento);
   width: 45px;
   height: 45px;
-  border-radius: 12px;
+  border-radius: var(--radio-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,14 +76,16 @@
 .item-label {
   display: block;
   font-size: 0.85rem;
-  color: #94a3b8;
+  color: var(--color-texto-suave);
   margin-bottom: 0.2rem;
 }
 
 .item-text {
+  display: block;
   font-size: 1rem;
   font-weight: 500;
-  color: #ffffff;
+  color: var(--color-texto);
+  overflow-wrap: anywhere;
 }
 
 /* Enlace (LinkedIn): hereda el estilo de info-item */
@@ -101,17 +104,17 @@
 }
 
 .info-link .item-text {
-  color: #818cf8;
+  color: var(--color-acento-claro);
 }
 
 /* =========================================
    COLUMNA DERECHA (Formulario)
 ========================================= */
 .contacto-form-wrapper {
-  background-color: #1e293b;
+  background-color: var(--color-superficie);
   padding: 2.5rem;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radio-lg);
+  border: 1px solid var(--borde-sutil);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
@@ -129,17 +132,17 @@
 
 .form-group label {
   font-size: 0.9rem;
-  color: #94a3b8;
+  color: var(--color-texto-suave);
 }
 
 .form-group input,
 .form-group textarea {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  border: 1px solid var(--borde-medio);
+  color: var(--color-texto);
   padding: 0.8rem 1rem;
-  border-radius: 8px;
+  border-radius: var(--radio-sm);
   font-size: 1rem;
   font-family: inherit;
   outline: none;
@@ -148,13 +151,45 @@
 
 .form-group input:focus,
 .form-group textarea:focus {
-  border-color: #6366f1;
+  border-color: var(--color-acento);
   box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
 }
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: #475569;
+  color: var(--color-texto-suave);
+  opacity: 0.75;
+}
+
+.form-group input:disabled,
+.form-group textarea:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* El honeypot: una trampa invisible. Una persona nunca lo ve ni lo
+   puede enfocar, pero los bots que rellenan todo caen aqui. */
+.campo-trampa {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Mensaje de estado del envio, leido por lectores de pantalla */
+.form-estado {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  min-height: 1.25rem;
+}
+
+.form-estado.es-error {
+  color: #fca5a5;
+}
+
+.form-estado.es-exito {
+  color: var(--color-acento-claro);
 }
 
 .form-group textarea {
@@ -165,11 +200,11 @@
    BOTÓN ENVIAR
 ========================================= */
 .btn-submit {
-  background-color: #6366f1;
-  color: #0b1120;
+  background-color: var(--color-acento);
+  color: var(--color-texto);
   border: none;
   padding: 1rem;
-  border-radius: 8px;
+  border-radius: var(--radio-sm);
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
@@ -177,9 +212,15 @@
   margin-top: 0.5rem;
 }
 
-.btn-submit:hover {
-  background-color: #4f46e5;
+.btn-submit:hover:not(:disabled) {
+  background-color: var(--color-acento-oscuro);
   transform: translateY(-2px);
+}
+
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: progress;
+  transform: none;
 }
 
 /* =========================================
