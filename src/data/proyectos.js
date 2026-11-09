@@ -1,4 +1,4 @@
-import qhseImg from '../assets/qhse.svg';
+import qhseImg from '../assets/qhse.webp';
 import inventarioImg from '../assets/inventario.webp';
 import terrunoImg from '../assets/terruno.svg';
 import powerBiImg from '../assets/powerbi.svg';
@@ -15,23 +15,44 @@ export const proyectos = [
     cliente: 'AGUNSA',
     tipo: 'Sistema interno',
     imagen: qhseImg,
-    alt: 'Interfaz del Portal QHSE: formato de permiso de trabajo ATS con firmas y expediente en PDF',
+    encuadre: 'top',
+    alt: 'Pantalla de inicio del Portal QHSE con sus cuatro módulos: QHSE, SSTV, Resguardo y Habla AGUNSA',
     estado: 'En uso',
-    // El dato que convierte el proyecto en evidencia.
+    // Cifras del propio sistema: lo que lo convierte en evidencia.
     impacto: [
       { cifra: '7', etiqueta: 'sedes en operación' },
-      { cifra: '36', etiqueta: 'tablas en Dataverse' },
-      { cifra: '5', etiqueta: 'roles con permisos propios' },
+      { cifra: '814', etiqueta: 'trabajadores registrados' },
+      { cifra: '4', etiqueta: 'módulos en producción' },
     ],
     descripcion:
       'El permiso de trabajo se llenaba a mano, se firmaba en papel y el ' +
-      'expediente se archivaba en un folder. Ahora el supervisor llena el ' +
+      'expediente se archivaba en un folder. Hoy el supervisor llena el ' +
       'formato ATS o PETAR desde el navegador, los trabajadores firman en ' +
-      'pantalla y el sistema arma el expediente en PDF y lo archiva solo.',
+      'pantalla y el sistema arma el expediente en PDF y lo archiva solo. ' +
+      'Creció de ahí a cuatro módulos que cubren el día a día del área.',
+    // Los módulos describen el alcance mejor que una lista de funciones.
+    modulos: [
+      {
+        nombre: 'QHSE',
+        descripcion: 'Entregas de EPP, asistencias e inspecciones, y ATS y PETAR de empresas terceras',
+      },
+      {
+        nombre: 'SSTV',
+        descripcion: 'Inventario de cámaras por sede, tiempo de uso y reporte de fallas con foto',
+      },
+      {
+        nombre: 'Resguardo',
+        descripcion: 'Cuaderno de ocurrencias por turno, agentes con carné SUCAMEC y equipos asignados',
+      },
+      {
+        nombre: 'Habla AGUNSA',
+        descripcion: 'Agenda de reuniones con invitados internos y externos, con recordatorios por correo',
+      },
+    ],
     detalles: [
       'Control de acceso por rol validado en la base de datos, no en la interfaz',
-      'Registro de terceros y control de inventario con entrega de EPP por trabajador',
-      'Generación del expediente en PDF y archivado automático',
+      'Expediente en PDF generado y archivado sin intervención',
+      'Asistente en el navegador que resuelve dudas sobre el portal',
     ],
     tecnologias: ['Power Pages', 'Dataverse', 'Power Automate', 'JavaScript', 'jsPDF'],
     enlaces: [],

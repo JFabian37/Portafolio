@@ -73,6 +73,17 @@ const Destacado = ({ proyecto }) => (
         </dl>
       )}
 
+      {proyecto.modulos && (
+        <dl className="modulos">
+          {proyecto.modulos.map((m) => (
+            <div key={m.nombre} className="modulo">
+              <dt>{m.nombre}</dt>
+              <dd>{m.descripcion}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+
       {proyecto.detalles && (
         <ul className="detalles">
           {proyecto.detalles.map((d) => <li key={d}>{d}</li>)}

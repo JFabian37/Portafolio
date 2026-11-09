@@ -84,11 +84,14 @@
 /* ---------- Muestra del producto ---------- */
 .portada-muestra { min-width: 0; }
 
+/* La captura es oscura sobre fondo oscuro: sin algo de elevación
+   se funde con la página. */
 .portada-muestra img {
   width: 100%;
   height: auto;
-  border: 1px solid var(--linea-clara);
+  border: 1px solid var(--acero-700);
   border-radius: var(--radio-lg);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
 }
 
 .portada-muestra figcaption {
