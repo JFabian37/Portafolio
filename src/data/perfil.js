@@ -8,9 +8,10 @@ export const perfil = {
   rol: 'Estudiante de Ingeniería de Software con IA · SENATI',
   disponible: true,
   ubicacion: 'Lima, Perú',
-  email: 'tareasypracticas27@gmail.com',
+  email: 'delriomontoyajosue6@gmail.com',
   linkedin: 'https://www.linkedin.com/in/josue-del-rio-15b220444/',
   github: 'https://github.com/JFabian37',
+  cv: '/CV-Josue-Del-Rio.pdf',
 
   descripcion:
     'Construyo aplicaciones web de principio a fin: interfaces en React y ' +
