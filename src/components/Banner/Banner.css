@@ -9,7 +9,9 @@
 
 .portada-malla {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+  /* La captura manda: es el argumento del portafolio, no un adorno
+     al lado del nombre. */
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.35fr);
   gap: clamp(2.5rem, 5vw, 4.5rem);
   align-items: center;
 }

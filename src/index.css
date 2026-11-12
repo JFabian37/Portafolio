@@ -42,7 +42,7 @@
   --radio:    6px;
   --radio-lg: 10px;
   --nav:      64px;
-  --ancho:    1180px;
+  --ancho:    1280px;
 
   color-scheme: dark;
 }
@@ -81,7 +81,7 @@ h1, h2, h3, .condensada {
   letter-spacing: -0.01em;
 }
 
-h1 { font-size: clamp(3.4rem, 10vw, 6.4rem); }
+h1 { font-size: clamp(3.2rem, 7.5vw, 5.4rem); }
 h2 { font-size: clamp(2.2rem, 5.5vw, 3.4rem); }
 h3 { font-size: clamp(1.4rem, 3vw, 1.85rem); }
 
