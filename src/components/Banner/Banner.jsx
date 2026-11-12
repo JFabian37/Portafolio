@@ -59,14 +59,50 @@ const Banner = () => {
         {/* ---------- El trabajo, no una descripción del trabajo ---------- */}
         {destacado && (
           <figure className="portada-muestra">
-            <img
-              src={destacado.imagen}
-              alt={destacado.alt}
-              width="1200"
-              height="560"
-              fetchPriority="high"
-              decoding="async"
-            />
+            {/* Panel que ocupa el alto de la columna de texto: la captura
+                deja de flotar en un mar de fondo vacío. */}
+            <div className="muestra-escenario">
+              <div className="ventana">
+                <div className="ventana-barra" aria-hidden="true">
+                  <span className="ventana-puntos"><i /><i /><i /></span>
+                  <span className="ventana-titulo">
+                    {destacado.titulo} · {destacado.cliente}
+                  </span>
+                  <span className="ventana-vivo">
+                    <span className="punto-vivo"></span>
+                    {destacado.estado}
+                  </span>
+                </div>
+                <img
+                  src={destacado.imagen}
+                  alt={destacado.alt}
+                  width="1600"
+                  height="756"
+                  fetchPriority="high"
+                  decoding="async"
+                />
+              </div>
+
+              {destacado.impacto && (
+                <dl className="muestra-cifras">
+                  {destacado.impacto.map((i) => (
+                    <div key={i.etiqueta} className="muestra-cifra">
+                      <dt>{i.etiqueta}</dt>
+                      <dd>{i.cifra}</dd>
+                    </div>
+                  ))}
+                </dl>
+              )}
+
+              {destacado.modulos && (
+                <ul className="muestra-modulos" aria-label="Módulos del portal">
+                  {destacado.modulos.map((m) => (
+                    <li key={m.nombre}>{m.nombre}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+
             <figcaption>
               {destacado.titulo} — en uso en las siete sedes de {destacado.cliente}
             </figcaption>
